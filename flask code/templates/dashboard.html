@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Traffic Dashboard</title>
+</head>
+
+<body>
+
+<h1>📊 Detection Dashboard</h1>
+
+<table border="1">
+
+<tr>
+<th>Time</th>
+<th>Sign</th>
+<th>Weather</th>
+<th>Speed</th>
+<th>AI Decision</th>
+</tr>
+
+{% for row in logs %}
+
+<tr>
+<td>{{row.time}}</td>
+<td>{{row.sign}}</td>
+<td>{{row.weather}}</td>
+<td>{{row.speed}}</td>
+<td>{{row.decision}}</td>
+</tr>
+
+{% endfor %}
+
+</table>
+
+<br>
+
+<a href="/">Back to Camera</a>
+
+</body>
+</html>

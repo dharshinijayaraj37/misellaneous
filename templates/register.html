@@ -1,0 +1,181 @@
+{% extends "base.html" %}
+{% block content %}
+
+<!-- ==========================================================
+     INTERNAL CSS (PREMIUM REGISTER DESIGN)
+     ========================================================== -->
+<style>
+    /* Centering Wrapper */
+    .auth-wrapper {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 70vh;
+        padding: 2rem 0;
+    }
+
+    /* Premium Card Styling */
+    .auth-card {
+        background: #ffffff;
+        border: 1px solid #f1f5f9;
+        border-radius: 24px;
+        padding: 3rem;
+        width: 100%;
+        max-width: 420px;
+        box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.07);
+        animation: slideUp 0.6s ease-out forwards;
+        position: relative;
+        overflow: hidden;
+    }
+
+    /* Decorative Element inside card */
+    .auth-card::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 6px;
+        background: linear-gradient(135deg, #10b981 0%, #6366f1 100%); /* Green to Purple Gradient */
+    }
+
+    /* Animation */
+    @keyframes slideUp {
+        from {
+            opacity: 0;
+            transform: translateY(30px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    /* Header Styles */
+    .auth-header {
+        text-align: center;
+        margin-bottom: 2.5rem;
+    }
+
+    .auth-title {
+        font-size: 1.75rem;
+        font-weight: 700;
+        color: #1e293b;
+        margin-bottom: 0.5rem;
+    }
+
+    .auth-subtitle {
+        color: #94a3b8;
+        font-size: 0.95rem;
+    }
+
+    /* Form Styles */
+    .form-group {
+        margin-bottom: 1.5rem;
+    }
+
+    .form-label {
+        display: block;
+        margin-bottom: 0.5rem;
+        font-size: 0.875rem;
+        font-weight: 600;
+        color: #475569;
+    }
+
+    .form-control {
+        display: block;
+        width: 100%;
+        padding: 14px 18px;
+        font-size: 1rem;
+        line-height: 1.5;
+        color: #1e293b;
+        background-color: #f8fafc;
+        background-clip: padding-box;
+        border: 1px solid #e2e8f0;
+        border-radius: 12px;
+        transition: all 0.2s ease;
+    }
+
+    .form-control:focus {
+        color: #1e293b;
+        background-color: #fff;
+        border-color: #10b981; /* Green focus ring for registration */
+        outline: 0;
+        box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.1);
+    }
+
+    .form-control::placeholder {
+        color: #cbd5e1;
+        opacity: 1;
+    }
+
+    /* Premium Button - Success Gradient */
+    .btn-premium-success {
+        width: 100%;
+        padding: 14px;
+        font-size: 1rem;
+        font-weight: 600;
+        color: #ffffff;
+        background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+        border: none;
+        border-radius: 12px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        box-shadow: 0 4px 14px rgba(16, 185, 129, 0.25);
+        margin-top: 1rem;
+    }
+
+    .btn-premium-success:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 20px rgba(16, 185, 129, 0.35);
+        color: #fff;
+    }
+
+    /* Footer Link */
+    .auth-footer {
+        text-align: center;
+        margin-top: 2rem;
+        font-size: 0.9rem;
+        color: #64748b;
+    }
+
+    .auth-footer a {
+        color: #10b981;
+        text-decoration: none;
+        font-weight: 600;
+        transition: color 0.2s;
+    }
+
+    .auth-footer a:hover {
+        color: #059669;
+    }
+</style>
+
+<div class="auth-wrapper">
+    <div class="auth-card">
+        <div class="auth-header">
+            <h2 class="auth-title">Create Account</h2>
+            <p class="auth-subtitle">Join us to enhance road safety</p>
+        </div>
+
+        <form method="POST">
+            <div class="form-group">
+                <label class="form-label">Username</label>
+                <input type="text" name="username" class="form-control" placeholder="Choose a username" required>
+            </div>
+            
+            <div class="form-group">
+                <label class="form-label">Password</label>
+                <input type="password" name="password" class="form-control" placeholder="Create a strong password" required>
+            </div>
+
+            <button type="submit" class="btn-premium-success">Register</button>
+        </form>
+
+        <div class="auth-footer">
+            Already have an account? <a href="/login">Login</a>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

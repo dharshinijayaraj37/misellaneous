@@ -1,0 +1,195 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<!-- ==========================================================
+     INTERNAL CSS (PREMIUM HOME PAGE STYLES)
+     ========================================================== -->
+<style>
+    /* Hero Section Container */
+    .hero-section {
+        padding: 4rem 0;
+        text-align: center;
+        position: relative;
+        overflow: hidden;
+    }
+
+    /* Gradient Text for Main Heading */
+    .gradient-text {
+        background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 50%, #ec4899 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        font-weight: 800;
+        letter-spacing: -1.5px;
+        margin-bottom: 1.5rem;
+        animation: fadeInUp 0.8s ease-out forwards;
+    }
+
+    /* Lead Paragraph Styling */
+    .hero-description {
+        font-size: 1.25rem;
+        color: #64748b; /* Slate 500 */
+        max-width: 600px;
+        margin: 0 auto 2.5rem auto;
+        line-height: 1.7;
+        animation: fadeInUp 0.8s ease-out 0.2s forwards;
+        opacity: 0;
+    }
+
+    /* Premium Button Styling */
+    .btn-premium {
+        background: #000000;
+        color: #ffffff;
+        padding: 16px 40px;
+        font-size: 1rem;
+        font-weight: 600;
+        border-radius: 50px;
+        border: none;
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        transition: all 0.3s ease;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        animation: fadeInUp 0.8s ease-out 0.4s forwards;
+        opacity: 0;
+        display: inline-block;
+    }
+
+    .btn-premium:hover {
+        background: #1e293b;
+        color: #ffffff;
+        transform: translateY(-3px);
+        box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+    }
+
+    /* Decorative Circle in Background */
+    .decorative-circle {
+        position: absolute;
+        width: 500px;
+        height: 500px;
+        background: linear-gradient(135deg, rgba(99, 102, 241, 0.05) 0%, rgba(139, 92, 246, 0.05) 100%);
+        border-radius: 50%;
+        z-index: -1;
+        top: -200px;
+        right: -150px;
+        animation: float 6s ease-in-out infinite;
+    }
+
+    /* Feature Cards Section */
+    .features-section {
+        margin-top: 6rem;
+        padding: 3rem 0;
+    }
+
+    .feature-card {
+        background: #ffffff;
+        border: 1px solid #f1f5f9;
+        border-radius: 20px;
+        padding: 2rem;
+        transition: all 0.3s ease;
+        height: 100%;
+        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.02);
+    }
+
+    .feature-card:hover {
+        border-color: #e2e8f0;
+        transform: translateY(-5px);
+        box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.06);
+    }
+
+    .feature-title {
+        font-weight: 700;
+        color: #1e293b;
+        margin-bottom: 0.75rem;
+        font-size: 1.1rem;
+    }
+
+    .feature-text {
+        color: #64748b;
+        font-size: 0.95rem;
+        line-height: 1.6;
+    }
+
+    .feature-number {
+        font-size: 3rem;
+        font-weight: 800;
+        color: #f1f5f9;
+        margin-bottom: 1rem;
+        line-height: 1;
+    }
+
+    /* Animations */
+    @keyframes fadeInUp {
+        from {
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    @keyframes float {
+        0% { transform: translate(0, 0); }
+        50% { transform: translate(-15px, 15px); }
+        100% { transform: translate(0, 0); }
+    }
+</style>
+
+<!-- Hero Section -->
+<div class="hero-section">
+    <!-- Decorative Element -->
+    <div class="decorative-circle"></div>
+
+    <div class="container">
+        <h1 class="display-4 gradient-text">Context-Aware Traffic Sign Detection</h1>
+        
+        <p class="hero-description">
+            A next-generation system leveraging YOLOv8 and Computer Vision to enhance road safety through real-time context analysis.
+        </p>
+
+        <a href="/login" class="btn-premium">Get Started</a>
+    </div>
+</div>
+
+<!-- Features Section (To fill the page and look premium) -->
+<div class="features-section">
+    <div class="container">
+        <div class="row">
+            <!-- Feature 1 -->
+            <div class="col-md-4 mb-4">
+                <div class="feature-card">
+                    <div class="feature-number">01</div>
+                    <h3 class="feature-title">Real-Time Detection</h3>
+                    <p class="feature-text">
+                        Instantly identifies traffic signs using advanced YOLOv8 algorithms with high accuracy and low latency.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Feature 2 -->
+            <div class="col-md-4 mb-4">
+                <div class="feature-card">
+                    <div class="feature-number">02</div>
+                    <h3 class="feature-title">Context Awareness</h3>
+                    <p class="feature-text">
+                        Integrates live weather data and time of day to assess risk levels dynamically for safer driving.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Feature 3 -->
+            <div class="col-md-4 mb-4">
+                <div class="feature-card">
+                    <div class="feature-number">03</div>
+                    <h3 class="feature-title">Smart Alerts</h3>
+                    <p class="feature-text">
+                        Provides voice-guided alerts and recommended actions to the driver before potential hazards arise.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

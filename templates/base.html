@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Traffic Sign System</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+    <!-- ==========================================================
+         INTERNAL CSS (PREMIUM WHITE DESIGN)
+         ========================================================== -->
+    <style>
+        :root {
+            --primary-gradient: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+            --bg-body: #ffffff;
+            --bg-card: #ffffff;
+            --text-main: #1e293b;
+            --text-muted: #64748b;
+            --accent-color: #6366f1;
+            --border-color: #e2e8f0;
+            --shadow-soft: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
+            --shadow-hover: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-body);
+            color: var(--text-main);
+            min-height: 100vh;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        /* Subtle Animated Background Elements */
+        .bg-decoration {
+            position: fixed;
+            z-index: -1;
+            border-radius: 50%;
+            filter: blur(100px);
+            opacity: 0.15;
+            animation: float 20s infinite ease-in-out;
+        }
+        .dec-1 { top: -10%; right: -5%; width: 400px; height: 400px; background: #8b5cf6; }
+        .dec-2 { bottom: -10%; left: -5%; width: 300px; height: 300px; background: #06b6d4; animation-delay: -10s; }
+
+        @keyframes float {
+            0%, 100% { transform: translate(0, 0); }
+            50% { transform: translate(-20px, 20px); }
+        }
+
+        /* Navbar Styling */
+        .navbar {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border-color);
+            padding: 1rem 2rem;
+            transition: all 0.3s ease;
+        }
+
+        .navbar-brand {
+            font-weight: 700;
+            font-size: 1.4rem;
+            color: var(--text-main);
+            letter-spacing: -0.5px;
+        }
+
+        .navbar-brand:hover {
+            color: var(--accent-color);
+        }
+
+        .nav-link {
+            color: var(--text-muted) !important;
+            font-weight: 500;
+            margin: 0 8px;
+            padding: 8px 16px;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .nav-link:hover {
+            color: var(--accent-color) !important;
+            background-color: rgba(99, 102, 241, 0.05);
+        }
+
+        .nav-link.active {
+            color: var(--accent-color) !important;
+            background-color: rgba(99, 102, 241, 0.1);
+        }
+
+        /* Main Container */
+        .container {
+            padding-top: 2rem;
+            padding-bottom: 4rem;
+            animation: fadeIn 0.6s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Premium Card Styling */
+        .premium-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 2rem;
+            box-shadow: var(--shadow-soft);
+            transition: all 0.3s ease;
+        }
+
+        .premium-card:hover {
+            box-shadow: var(--shadow-hover);
+            transform: translateY(-2px);
+        }
+
+        /* Header Titles */
+        .section-header {
+            margin-bottom: 2rem;
+        }
+        .section-header h2 {
+            font-weight: 700;
+            color: var(--text-main);
+            margin-bottom: 0.5rem;
+        }
+        .section-header p {
+            color: var(--text-muted);
+        }
+
+        /* Buttons */
+        .btn-primary {
+            background: var(--primary-gradient);
+            border: none;
+            padding: 12px 28px;
+            border-radius: 12px;
+            font-weight: 600;
+            color: #fff;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 14px rgba(99, 102, 241, 0.3);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(99, 102, 241, 0.4);
+            color: #fff;
+        }
+
+        .btn-outline-secondary {
+            border: 2px solid var(--border-color);
+            color: var(--text-muted);
+            padding: 10px 24px;
+            border-radius: 12px;
+            font-weight: 600;
+            background: transparent;
+        }
+
+        .btn-outline-secondary:hover {
+            border-color: var(--text-muted);
+            color: var(--text-main);
+            background: #f8fafc;
+        }
+
+        /* Forms */
+        .form-control {
+            background: #f8fafc;
+            border: 1px solid var(--border-color);
+            border-radius: 10px;
+            padding: 14px 18px;
+            color: var(--text-main);
+            font-weight: 400;
+            transition: all 0.3s ease;
+        }
+
+        .form-control:focus {
+            background: #ffffff;
+            border-color: var(--accent-color);
+            box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
+            color: var(--text-main);
+        }
+
+        /* Alert Messages */
+        .alert {
+            border-radius: 12px;
+            border: none;
+            background: #f1f5f9;
+            color: var(--text-main);
+            padding: 16px 20px;
+            border-left: 4px solid var(--accent-color);
+        }
+
+        /* Logout Button Specific */
+        .logout-btn {
+            color: #ef4444 !important;
+            background: rgba(239, 68, 68, 0.05);
+        }
+        .logout-btn:hover {
+            background: rgba(239, 68, 68, 0.1);
+            color: #dc2626 !important;
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar { width: 8px; height: 8px; }
+        ::-webkit-scrollbar-track { background: #f1f5f9; }
+        ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 10px; }
+        ::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
+    </style>
+</head>
+<body>
+
+    <!-- Subtle Background Decorations -->
+    <div class="bg-decoration dec-1"></div>
+    <div class="bg-decoration dec-2"></div>
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-light">
+        <a class="navbar-brand" href="/">Traffic AI</a>
+        
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto align-items-center">
+                {% if current_user.is_authenticated %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="/dashboard">Dashboard</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/input">Settings</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/result">Logs</a>
+                    </li>
+                    <li class="nav-item ml-2">
+                        <a class="nav-link logout-btn" href="/logout">Logout</a>
+                    </li>
+                {% else %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="/login">Login</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/register">Register</a>
+                    </li>
+                {% endif %}
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="container mt-4">
+        <!-- Flash Messages -->
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                <div class="row justify-content-center mb-4">
+                    <div class="col-md-8">
+                        {% for message in messages %}
+                            <div class="alert alert-info text-center shadow-sm">
+                                {{ message }}
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            {% endif %}
+        {% endwith %}
+        
+        <!-- Page Content Block -->
+        {% block content %}{% endblock %}
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <script>
+        // Dashboard status script
+        if(window.location.pathname === '/dashboard'){
+            setInterval(function(){
+                $.get('/get_status', function(data){
+                    if(data.data){
+                        $('#status-weather').text(data.data.weather || 'N/A');
+                        $('#status-sign').text(data.data.sign || 'N/A');
+                        $('#status-risk').text(data.data.risk !== undefined ? data.data.risk : 'N/A');
+                        $('#status-action').text(data.data.action || 'N/A');
+                        
+                        if(data.alert){
+                            var alertBox = $('#alert-box');
+                            alertBox.text(data.alert);
+                            
+                            // Add animation class
+                            alertBox.removeClass('pulse-anim').addClass('pulse-anim');
+                            setTimeout(function(){ alertBox.removeClass('pulse-anim'); }, 500);
+
+                            // Trigger audio reload
+                            var audio = document.getElementById('alert-sound');
+                            if(audio) {
+                                audio.load();
+                                audio.play();
+                            }
+                        }
+                    }
+                });
+            }, 1000);
+        }
+    </script>
+</body>
+</html>
